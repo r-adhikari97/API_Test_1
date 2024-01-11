@@ -3,7 +3,7 @@ from .views import UserViewSet
 from rest_framework import routers
 
 
-# Using Router with VCiewSet
+# Using Router with VViewSet
 router = routers.DefaultRouter()
 router.register(r'users', UserViewSet)
 
