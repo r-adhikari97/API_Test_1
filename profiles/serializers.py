@@ -10,3 +10,10 @@ class UserSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return CustomUser.objects.create_user(**validated_data)
+    
+    
+# Verify Credentials
+class Verify_Credentials(serializers.Serializer):
+    username = serializers.CharField()
+    password = serializers.CharField()
+
