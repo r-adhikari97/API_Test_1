@@ -27,8 +27,8 @@ class SMSViewset(viewsets.ModelViewSet):
 
 # APIView
 class SMS_APIView(APIView):
-    #authentication_classes = [TokenAuthentication]
-    #permission_classes = [IsAuthenticated]
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
 
     def post(self, request):
         # Deserializing Data
@@ -36,19 +36,22 @@ class SMS_APIView(APIView):
 
         if serializer.is_valid():
             header = serializer.validated_data.get('header')
-            tsp = serializer.validated_data.get('tsp')
-            oap = serializer.validated_data.get('oap')
-            is_bank = bool(serializer.validated_data.get('is_bank'))
             body = serializer.validated_data.get('body')
 
+            # Setting Custom Parameters
+            serializer.validated_data['tsp'] = "A"
+            serializer.validated_data['tsp'] = "B"
+            serializer.validated_data['is_bank'] = True
+
+
             # Test
-            print(f"{header} ---- {tsp} ----- {oap} ----- {is_bank} -----{body}")
+            print(f"{header} ---- {serializer.validated_data['tsp']} ----- {serializer.validated_data['tsp']} ----- {serializer.validated_data['is_bank']} -----{body}")
 
             # Saving Data
             serializer.save()
 
             # Output sent
-            return Response({"output":is_bank}, status=status.HTTP_201_CREATED)
+            return Response({"output":serializer.validated_data['is_bank']}, status=status.HTTP_201_CREATED)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

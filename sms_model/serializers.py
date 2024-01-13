@@ -6,7 +6,8 @@ from .models import SMS
 class SmsSerializers(serializers.ModelSerializer):
     class Meta:
         model = SMS
-        fields = "__all__"
+        fields = ["header","body"]
+
 
 
 
