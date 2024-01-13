@@ -1,3 +1,6 @@
+# Base Files
+import random
+
 from django.shortcuts import render
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -41,7 +44,7 @@ class SMS_APIView(APIView):
             # Setting Custom Parameters
             serializer.validated_data['tsp'] = "A"
             serializer.validated_data['tsp'] = "B"
-            serializer.validated_data['is_bank'] = True
+            serializer.validated_data['is_bank'] = random.choice([True,False])
 
 
             # Test
