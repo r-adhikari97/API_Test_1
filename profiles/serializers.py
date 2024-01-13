@@ -12,8 +12,11 @@ class UserSerializer(serializers.ModelSerializer):
         return CustomUser.objects.create_user(**validated_data)
     
     
-# Verify Credentials
+# Verify Credentials : POST
 class Verify_Credentials(serializers.Serializer):
     username = serializers.CharField()
     password = serializers.CharField()
+
+
+
 
